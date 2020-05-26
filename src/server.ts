@@ -4,13 +4,6 @@ import {
 } from "../dep.ts";
 import { router } from "./router.tsx";
 
-const client = await new Client().connect({
-  hostname: "132.232.0.149",
-  username: "Mikelian",
-  db: "zzblogo",
-  password: "123456",
-});
-
 const app = new Application();
 
 app.use(async (ctx: any, next: any) => {

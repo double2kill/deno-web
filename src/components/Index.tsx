@@ -1,4 +1,4 @@
-import { React } from "../../dep.ts";
+import { React, axios } from "../../dep.ts";
 
 declare global {
   namespace JSX {
@@ -7,18 +7,36 @@ declare global {
       div: any;
       h1: any;
       p: any;
+      input: any;
     }
   }
 }
 
 const App = () => {
-  const [count, setCount] = (React as any).useState(1);
+  const [query, setQuery] = (React as any).useState("");
+  const [text, setText] = (React as any).useState("");
+  const handlePost = async () => {
+    const res = await axios.post("/mysql", {
+      query,
+    });
+    setText(JSON.stringify(res.data));
+  };
 
   return (
     <div>
-      <h1>Hello DenoLand!</h1>
-      <button onClick={() => setCount(count + 1)}>Click the 🦕</button>
-      <p>You clicked the 🦕 {count} times</p>
+      <h1>Deno mysql</h1>
+      <div>
+        <input
+          style={{ width: "100%" }}
+          value={query}
+          onChange={(e: any) => {
+            setQuery(e.target.value);
+          }}
+        >
+        </input>
+      </div>
+      <button onClick={handlePost}>搜索</button>
+      <p>{text}</p>
     </div>
   );
 };
