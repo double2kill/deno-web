@@ -15,7 +15,9 @@ const router = new Router();
 router
   .get("/", (context: any) => {
     const html =
-      `<html><head><script type="module" src="${bundlePath}"></script><style>* { font-family: Helvetica; }</style></head><body><div id="root">${
+      `<html><head><script type="module" src="${bundlePath}"></script><style>* { font-family: Helvetica; }</style>
+      <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+      </head><body><div id="root">${
         (ReactDOMServer as any).renderToString(<Index />)
       }</div></body></html>`;
     context.response.body = html;

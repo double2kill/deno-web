@@ -22,4 +22,6 @@ app.use(async (ctx: any, next: any) => {
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-await app.listen({ port: 8000 });
+const PORT = 8000;
+console.log(`Server start success at port ${PORT}`);
+await app.listen({ port: PORT });
